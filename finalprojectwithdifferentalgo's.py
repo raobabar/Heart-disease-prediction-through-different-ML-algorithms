@@ -32,27 +32,7 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 #gives you a single interface for all transformation and resulting estimator
 from sklearn.pipeline import Pipeline
 
-!pip install -U -q PyDrive
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-from google.colab import auth
-from oauth2client.client import GoogleCredentials
-# Authenticate and create the PyDrive client.
-auth.authenticate_user()
-gauth = GoogleAuth()
-gauth.credentials = GoogleCredentials.get_application_default()
-drive = GoogleDrive(gauth)
-
-link = 'https://drive.google.com/open?id=12Bl0Isr8-vUed7yWLv8z17l_2kQmz9qH' # The shareable link
-
-fluff, id = link.split('=')
-print (id) # Verify that you have everything after '='
-
-downloaded = drive.CreateFile({'id':id}) 
-downloaded.GetContentFile('Filename.csv')  
-df = pd.read_csv('Filename.csv')
-# Dataset is now stored in a Pandas Dataframe
-
+df = pd.read_csv("heart_processed.csv")
 df.head()
 
 #For splitting data into dependent and independent data
